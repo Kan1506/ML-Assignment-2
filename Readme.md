@@ -1,123 +1,150 @@
-# Machine Learning Assignment – 2  
-**M.Tech (AIML / DSE) – BITS Pilani**
+readme_content = """#  ML Assignment 2 – Breast Cancer Classification
+
+##  Student Information  
+- **Name:** Sri Harsha Sattiraju 
+- **Student ID:** 2024dc04136
+- **Course:** Machine Learning  
+- **Dataset:** Breast Cancer Wisconsin (Diagnostic)  
+- **University:** BITS Pilani  
 
 ---
 
-## 1. Problem Statement
+##  Project Overview
 
-The objective of this assignment is to implement multiple machine learning classification models on a real-world dataset, evaluate their performance using standard evaluation metrics, and deploy the models using a Streamlit web application. This demonstrates a complete end-to-end machine learning workflow including data preprocessing, model training, evaluation, and deployment.
+This project implements and compares multiple Machine Learning models for **Breast Cancer Classification** using the Wisconsin Diagnostic Dataset.
 
----
+The goal is to classify tumors as:
 
-## 2. Dataset Description
+- **0 → Benign**
+- **1 → Malignant**
 
-The dataset used is the **Breast Cancer Wisconsin (Diagnostic)** dataset from the **UCI Machine Learning Repository**.
+The project includes:
 
-- Number of instances: 569  
-- Number of input features: 30  
-- Target variable: `diagnosis`  
-  - 1 → Malignant  
-  - 0 → Benign  
-- Problem Type: Binary Classification  
-- Missing values: None  
-
-The dataset consists of features computed from digitized images of breast mass cell nuclei.
+- Data preprocessing  
+- Feature scaling  
+- Model training  
+- Evaluation metrics  
+- Confusion matrix visualization  
+- Streamlit web application  
 
 ---
 
-## 3. Machine Learning Models Used
+##  Models Implemented
 
-The following six classification models were implemented on the same dataset:
+The following 6 models were trained and evaluated:
 
 1. Logistic Regression  
-2. Decision Tree Classifier  
+2. Decision Tree  
 3. K-Nearest Neighbors (KNN)  
-4. Naive Bayes (Gaussian)  
-5. Random Forest (Ensemble)  
-6. XGBoost (Ensemble)  
+4. Naive Bayes  
+5. Random Forest  
+6. XGBoost  
+
+All models were evaluated using identical train-test splits for fair comparison.
+
+---
+
+##  Evaluation Metrics
 
 Each model was evaluated using:
 
 - Accuracy  
-- AUC Score  
 - Precision  
 - Recall  
 - F1 Score  
-- Matthews Correlation Coefficient (MCC)
+- ROC-AUC  
+- Matthews Correlation Coefficient (MCC)  
+- Confusion Matrix  
+- Classification Report  
 
 ---
 
-## 4. Model Performance Comparison
+##  Streamlit Web Application
 
-| Model | Accuracy | AUC | Precision | Recall | F1 Score | MCC |
-|-------|----------|-----|-----------|--------|----------|-----|
-| Logistic Regression | XX | XX | XX | XX | XX | XX |
-| Decision Tree | XX | XX | XX | XX | XX | XX |
-| KNN | XX | XX | XX | XX | XX | XX |
-| Naive Bayes | XX | XX | XX | XX | XX | XX |
-| Random Forest | XX | XX | XX | XX | XX | XX |
-| XGBoost | XX | XX | XX | XX | XX | XX |
+A Streamlit app (`app.py`) is included that allows:
 
-> Replace XX with your actual metric values from the comparison table.
-
----
-
-## 5. Observations on Model Performance
-
-| Model | Observation |
-|-------|-------------|
-| Logistic Regression | Performed strongly, indicating the dataset is largely linearly separable. |
-| Decision Tree | Captured non-linear patterns but showed slight overfitting compared to ensemble models. |
-| KNN | Achieved good accuracy after scaling; performance depends on choice of k. |
-| Naive Bayes | Performed reasonably despite independence assumption limitations. |
-| Random Forest | Demonstrated strong generalization and stable performance. |
-| XGBoost | Achieved the best overall performance across most metrics. |
-
----
-
-## 6. Deployment Details
-
-The application was developed using **Streamlit** and deployed on **Streamlit Community Cloud**.
-
-The Streamlit app includes:
-- CSV file upload option  
-- Model selection dropdown  
-- Display of evaluation metrics  
+- Model selection from sidebar  
+- Uploading custom CSV test data  
+- Automatic evaluation if label column (`diagnosis`) is present  
 - Confusion matrix visualization  
+- Display of classification report  
 
 ---
 
-## 7. Repository Structure
-ML_Assignment_2/
-│── app.py
-│── requirements.txt
-│── README.md
-│── model/
-│ ├── logistic_regression.pkl
-│ ├── decision_tree.pkl
-│ ├── knn.pkl
-│ ├── naive_bayes.pkl
-│ ├── random_forest.pkl
-│ ├── xgboost.pkl
-│ └── scaler.pkl
+ ##  Project Structure
+
+```text
+ML-Assignment-2/
+│
+├── model/
+│   ├── logistic_regression.pkl
+│   ├── decision_tree.pkl
+│   ├── knn.pkl
+│   ├── naive_bayes.pkl
+│   ├── random_forest.pkl
+│   ├── xgboost.pkl
+│   └── scaler.pkl
+│
+├── app.py
+├── create_CVS.py
+├── ML_Assignment_2.ipynb
+├── requirements.txt
+├── test_features_only.csv
+├── test_with_labels.csv
+├── wdbc.data
+├── wdbc.names
+└── README.md
 
 
----
+## How to Run the Project
 
-## 8. Tools & Libraries Used
+### Step 1: Install Dependencies
 
-- Python  
-- Pandas  
-- NumPy  
-- Scikit-learn  
-- XGBoost  
-- Streamlit  
-- Matplotlib  
+```bash
+pip install -r requirements.txt
+```
 
----
+### Step 2: Run Streamlit App
 
-## 9. Notes
+```bash
+streamlit run app.py
+```
 
-- All models were implemented and executed on BITS Virtual Lab.
-- GitHub repository link and live Streamlit application link are included in the final submission PDF.
+### Step 3: Open in Browser
 
+Go to:
+
+http://localhost:8501
+
+##  Dataset Description
+
+The Breast Cancer Wisconsin (Diagnostic) dataset contains 569 samples with 30 numerical features extracted from digitized images of breast mass cell nuclei.
+
+Target variable:
+- 0 → Benign
+- 1 → Malignant
+
+
+
+Expected CSV Format
+
+To compute evaluation metrics in the app:
+CSV must contain a column named diagnosis
+Values must be either:
+0 / 1
+or B / M
+If no label column is present, the app will still generate predictions.
+
+
+Key Results
+
+  Model Comparison Summary
+
+| Model                | Accuracy | AUC  |
+|----------------------|----------|------|
+| Logistic Regression  | ~0.96+   | ~0.99 |
+| Decision Tree        | ~0.93+   | ~0.94 |
+| KNN                  | ~0.95+   | ~0.98 |
+| Naive Bayes          | ~0.94+   | ~0.97 |
+| Random Forest        | ~0.97+   | ~0.99 |
+| XGBoost              | ~0.97+   | ~0.99 |
