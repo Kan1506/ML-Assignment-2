@@ -1,0 +1,5 @@
+python -m streamlit run app.py
+
+.\.venv\Scripts\python.exe -m pip install --upgrade pip
+.\.venv\Scripts\python.exe -m pip install pandas numpy scikit-learn matplotlib joblib streamlit xgboost
+.\.venv\Scripts\python.exe -m streamlit run app.py
